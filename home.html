@@ -14,6 +14,7 @@
     margin-top: 1.6rem;
   }
   .map-card {
+    position: relative;
     display: block;
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -25,16 +26,20 @@
   }
   .map-card:hover { border-color: var(--accent); transform: translateY(-2px); }
   .map-card .num {
+    position: absolute;
+    top: -10px;
+    left: -10px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: var(--accent);
     color: #fff;
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   }
   .map-card h2 { margin: 0.35rem 0 0.25rem; border: none; padding: 0; font-size: 1.05rem; }
   .map-card p { margin: 0; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
@@ -48,56 +53,56 @@
 
   <div class="grid">
     <a class="map-card" href="index.html">
-      <div class="num">①</div>
+      <div class="num">1</div>
       <h2>核心鏈路</h2>
       <p>LLM 大腦 → Harness → MCP 的完整連接關係，7 個節點，是整個學習地圖的主幹。</p>
       <span class="status">已完成</span>
     </a>
 
     <a class="map-card" href="memory_rag/index.html">
-      <div class="num">②</div>
+      <div class="num">2</div>
       <h2>記憶與 RAG</h2>
       <p>大腦沒記憶力，本專案怎麼用「短期記憶＋ChromaDB 向量資料庫」做出記憶的效果。</p>
       <span class="status">已完成</span>
     </a>
 
     <a class="map-card" href="multimodal/index.html">
-      <div class="num">③</div>
+      <div class="num">3</div>
       <h2>多模態橋接</h2>
       <p>qwen3:8b 看不懂圖片，怎麼借助 llava 這個視覺模型，把圖片「翻譯」成文字再交給 qwen3。</p>
       <span class="status">已完成</span>
     </a>
 
     <a class="map-card" href="multiagent/index.html">
-      <div class="num">④</div>
+      <div class="num">4</div>
       <h2>進階方向（路線圖）</h2>
       <p>目前的自我檢查機制之外，還有哪些可以升級的方向：多數決驗證、multi-agent 分工、接上 MCP 生態、Always-on Agent。</p>
       <span class="status">未來規劃</span>
     </a>
 
     <a class="map-card" href="security/index.html">
-      <div class="num">⑤</div>
+      <div class="num">5</div>
       <h2>AI 代理人安全邊界</h2>
       <p>整合散落在各站的安全概念，加上權限分級設計、隔離機制、Prompt Injection 防範這三個完整主題。</p>
       <span class="status">已完成</span>
     </a>
 
     <a class="map-card" href="rsi/index.html">
-      <div class="num">⑥</div>
+      <div class="num">6</div>
       <h2>AI 訓練 AI（RSI）</h2>
       <p>遞迴自我改進的架構拆解，以及最實際的問題：你本機的硬體真的做得到嗎？</p>
       <span class="status">已完成</span>
     </a>
 
     <a class="map-card" href="glossary/index.html">
-      <div class="num">⑦</div>
+      <div class="num">7</div>
       <h2>基礎名詞辭典</h2>
       <p>算力、VRAM、量化、推論 vs 訓練……整張地圖裡一直被用到、但沒正式定義過的詞，查閱用。</p>
       <span class="status">已完成</span>
     </a>
 
     <a class="map-card" href="deployment/index.html">
-      <div class="num">⑧</div>
+      <div class="num">8</div>
       <h2>部署架構分級</h2>
       <p>個人電腦部署，到中小企業 100 萬／1000 萬台幣兩個預算級距的 pipeline 設計，核心決策都收斂到同一題：自架還是用 API。</p>
       <span class="status">已完成</span>
