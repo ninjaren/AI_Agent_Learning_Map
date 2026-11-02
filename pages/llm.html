@@ -84,14 +84,17 @@
     </div>
 
     <h2>2. Transformer 架構：資料怎麼流過模型</h2>
-    <p>現代 LLM（包括 qwen3）幾乎都基於 2017 年提出的 Transformer 架構，精確地說是其中的 <strong>Decoder-only</strong> 變體。輸入進來後，大致依序流過這幾層：</p>
+    <p>現代 LLM（包括 qwen3）幾乎都基於 2017 年提出的 Transformer 架構，精確地說是其中的 <strong>Decoder-only</strong> 變體。先建立一個最簡單的畫面：輸入的文字會先變成一串數字，這串數字接著被反覆加工、一層一層修正，加工到最後，模型才拿這堆數字去猜下一個 token 最可能是誰。整個流程依序流過下面這幾層：</p>
     <table>
       <tr><th>層</th><th>作用</th></tr>
-      <tr><td>① Embedding 層</td><td>把每個 token 編號轉成高維度向量，語意相近的 token 在向量空間裡位置也相近</td></tr>
-      <tr><td>② 位置編碼</td><td>Transformer 本身不知道 token 順序，要額外把位置資訊加進向量</td></tr>
-      <tr><td>③ 多層 Self-Attention + Feed-Forward</td><td>堆疊數十層，每層讓每個 token 向量參考整段文字裡其他 token 的資訊，逐層提煉更抽象的語意表示</td></tr>
-      <tr><td>④ 輸出層</td><td>把最後一層向量轉成「每個可能下一個 token」的機率分佈</td></tr>
+      <tr><td>① Embedding 層</td><td>把每個 token 編號換成一組數字座標（向量）。意思相近的字，座標也比較靠近——像「貓」跟「狗」的座標會比「貓」跟「民主」更接近</td></tr>
+      <tr><td>② 位置編碼</td><td>光看①還分不出字的先後順序，這層把「這是第幾個字」的資訊也加進向量——沒有它，模型會分不出「狗咬人」跟「人咬狗」的差別</td></tr>
+      <tr><td>③ 多層 Self-Attention + Feed-Forward</td><td>堆疊數十層，每層都讓每個字的向量回頭看整句話裡其他字，重新調整自己代表的意思——運作細節看下一節</td></tr>
+      <tr><td>④ 輸出層</td><td>跑完所有層之後，把「整句話脈絡」濃縮成的向量，轉成「下一個 token 可能是誰」的機率分佈——怎麼轉成機率看第 4 節 Softmax</td></tr>
     </table>
+    <div class="card" style="margin-bottom:0;">
+      <p style="margin-bottom:0;">串起來看：先幫每個字查一份語意座標（①），再補上順序資訊（②），接著讓每個字反覆參考上下文修正自己的理解，修正好幾十輪（③），最後根據修正完的結果去猜下一個字最可能是誰（④）。越往後面的層，向量代表的已經不是「這個字單獨的意思」，而是「這個字在這句話、這個位置，結合全部上下文之後的意思」。</p>
+    </div>
 
     <h2>3. Self-Attention：它怎麼「理解上下文」</h2>
     <p>這是 Transformer 的核心設計，讓模型處理每個 token 時能回頭參考整段輸入裡的其他 token，自動判斷該多看哪些字。</p>
