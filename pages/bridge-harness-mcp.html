@@ -14,9 +14,9 @@
   <p class="subtitle">Harness 要先學會「MCP 這門語言」才能接上 MCP 插座。中間三層，跟第二站 LLM⇄Harness 橋接的三層概念相呼應——又是一組轉接器＋傳輸線＋講話規則。</p>
 
   <pre>Harness
-   MCP Client（內建的插座轉接器，知道怎麼講 MCP 語言）
-   Transport（傳輸線：stdio 本機管道，或 HTTP/SSE 網路連線）
-   JSON-RPC（講話規則：tools/list 問有什麼工具、tools/call 呼叫工具）
+   ↓ MCP Client（內建的插座轉接器，知道怎麼講 MCP 語言）
+   ↓ Transport（傳輸線：stdio 本機管道，或 HTTP/SSE 網路連線）
+   ↓ JSON-RPC（講話規則：tools/list 問有什麼工具、tools/call 呼叫工具）
 MCP Server</pre>
 
   <h2>第一層：MCP Client</h2>
